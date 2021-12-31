@@ -1,0 +1,160 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="landing-spacer"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="main-title text-large">
+                MEET THE DESIGNER
+            </h2>
+            <div class="line ms-auto me-auto"></div>
+        </div>
+    </div>
+    <div class="about-spacer"></div>
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div
+                class="col-12 col-md-5 d-flex justify-content-center justify-content-md-end align-items-center order-md-first">
+                <div class="row d-flex justify-content-center justify-content-md-end">
+
+                    <div class="col-12 col-md-10 col-lg-6 d-none d-md-block">
+                        <h4 class="subtitle text-end">LOREM IPSUM</h4>
+                        <br>
+                        <p class="info-text text-end">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been
+                            the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of
+                            type
+                            and scrambled it to make a type specimen book. It has survived not only five centuries, but
+                            also
+                            the
+                            leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+                            1960s
+                            with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                            desktop
+                            publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                    </div>
+                    <div class="col-11 mobile-col d-block d-md-none">
+                        <h4 class="subtitle text-center">MOBILE LOREM IPSUM</h4>
+                        <br>
+                        <p class="info-text text-center">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+                            been
+                            the
+                            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley
+                            of
+                            type
+                            and scrambled it to make a type specimen book. It has survived not only five centuries, but
+                            also
+                            the
+                            leap into electronic typesetting, remaining essentially unchanged. It was popularised in the
+                            1960s
+                            with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with
+                            desktop
+                            publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-7 d-flex justify-content-center justify-content-md-start order-first">
+                <img id="about-img" src="{{ MEDIA_URL }}about-img.png" alt="">
+            </div>
+
+        </div>
+    </div>
+    <div class="about-spacer"></div>
+    <div class="row d-flex justify-content-md-end">
+        <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-start">
+            <div class="social-container">
+                <div class="row title-row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <h5 class="mt-2 dark-grey">LET'S GET SOCIAL</h5>
+                    </div>
+                </div>
+                <div class="row mt-2 mb-2 me-2 ms-2">
+                    <div class="col-12 col-md-6">
+                        <h5 class="grey"><a href="https://www.facebook.com/nebula.oktorino" target="_blank"><i
+                                    class="fab fa-facebook social-icon"></i></a> Nebula Oktorino</h5>
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <h5 class="grey"><a href="https://www.instagram.com/nebs.illustration/" target="_blank"><i
+                                    class="fab fa-instagram social-icon"></i></a> Nebs Illustration</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-spacer"></div>
+    <div class="about-spacer d-none d-md-block"></div>
+    <div class="row d-flex justify-content-center">
+
+        <!-- Desktop version -->
+
+        <div class="col-12 lets-chat-container d-none d-lg-block">
+            <div class="row height d-flex justify-content-center">
+                <div class="col-3 d-flex justify-content-end align-items-center right-border">
+                    <h2 class="social-title grey">CANGGU, <br> BALI</h2>
+                </div>
+                <div class="col-1 d-flex align-items-center right-border">
+                    <p class="text-orientation grey">EST,2022</p>
+                </div>
+                <div class="col-3 mt-auto mb-auto me-3 ms-3">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center mt-auto mb-2">
+                            <a class="chat-link" href="{% url 'contact' %}">
+                                <h5>LET'S CHAT</h5>
+                            </a>
+                        </div>
+                        <div class="col-12 d-flex justify-content-center">
+                            <div class="line"></div>
+                        </div>
+                        <div class="col-12 text-center d-flex justify-content-center mt-2">
+                            <h6 class="grey">WOULD LOVE TO HEAR FROM YOU!</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3 d-flex align-items-center left-border">
+                    <h5 class="grey">NEBSDESIGN@GMAIL.COM</h5>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile version -->
+
+        <div class="col-12 lets-chat-mobile-container d-block d-lg-none">
+            <div class="row height d-flex justify-content-center">
+                <div class="col-11">
+                    <h2 class="social-title grey">CANGGU, <br> BALI</h2>
+                </div>
+                <div class="col-11">
+                    <p class="text-orientation grey">EST,2022</p>
+                </div>
+                <div class="col-11">
+                    <div class="row">
+                        <div class="col-12">
+                            <a class="chat-link chat-link-mobile" href="#">
+                                <h5>LET'S CHAT</h5>
+                            </a>
+                            <h6 class="grey">WOULD LOVE TO HEAR FROM YOU!</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-11">
+                    <h5 class="grey">NEBSDESIGN@GMAIL.COM</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="about-spacer"></div>
+</div>
+
+{% endblock %}

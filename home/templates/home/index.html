@@ -1,1 +1,83 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container-fluid">
+
+    <!-- Landing Page -->
+    <section id="landing-page-section">
+        <div id="landing-image"></div>
+        <div class="landing-spacer"></div>
+        <div class="row offset-md-1 d-flex align-items-center landing-row">
+            <div class="col-12 col-md-8">
+                <h1 class="main-title text-large">LOREM IPSUM DESIGN</h1>
+                <p class="info-text bread-text">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s.
+                </p>
+                <a class="about-link" href="{% url 'about' %}">Learn more about me</a>
+            </div>
+        </div>
+    </section>
+    <!-- /Landing Page -->
+
+    <div class="spacer"></div>
+
+    <!-- Gallery -->
+    <section id="gallery-section" class="mb-5">
+        <div class="row mb-3 mt-3 d-flex justify-content-center">
+            <div class="col-12 text-center">
+                <h4>Gallery</h4>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row no-gutters gallery-row d-flex justify-content-center">
+                <div id="gallery">
+                    {% if user.is_superuser %}
+                        {% for img in images %}
+                            <a href="{% url 'home' %}"><img src="{{ img.image.url }}" alt="{{ img.alt }}"></a>
+                        {% endfor %}
+                    {% else %}
+                        {% for img in images %}
+                            <img src="{{ img.image.url }}" alt="{{ img.alt }}">
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /Gallery -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container container-fluid">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 text-center">
+                    <h6 class="text-muted"><i class="far fa-copyright"></i> Created by Jacob Molsby Designed By Nebs
+                    </h6>
+                    <nav>
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a class="icon" href="#" target="_blank"><i class="fab fa-facebook footer-icon"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a class="icon" href="#" target="_blank"><i
+                                        class="fab fa-instagram footer-icon"></i></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- /Footer -->
+
+</div>
+
+{% endblock %}

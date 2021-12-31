@@ -1,5 +1,4 @@
 {% load static %}
-{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +36,7 @@
     </script>
     {% endblock %}
 
-    <title>Business Name</title>
+    <title>NEBS DESIGN</title>
 
 </head>
 
@@ -45,48 +44,65 @@
     <header id="navbar" class="container-fluid fixed-top">
         <div id="main-nav" class="row pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-left">
-                <a href="#" class="nav-link main-logo-link">
-                    <h2 class="logo-font text-black my-0">BUSINESS NAME</h2>
+                <a href="{% url 'home' %}" class="nav-link main-logo-link pb-3">
+                    <h2 class="logo-font text-black my-0">NEBS DESIGN</h2>
                 </a>
             </div>
 
-            <div class="col-12 col-lg-4 pt-2 me-2 py-lg-0 ms-auto d-flex justify-content-end">
+            <div class="col-12 col-lg-6 pt-2 me-2 py-lg-0 ms-auto d-flex justify-content-end">
                 <ul class="list-unstyled list-inline pt-2 ">
-                    <li class="list-inline-item">
-                        <a class="nav-link" href="#">About</a>
+                    <li class="list-inline-item pe-2">
+                        <a class="nav-link appear" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="nav-link" href="#contact">Contact</a>
+                        <p class="divider">|</p>
+                    </li>
+                    <li class="list-inline-item pe-2">
+                        <a class="nav-link appear" href="{% url 'about' %}">About</a>
                     </li>
                     <li class="list-inline-item">
-                        <a class="nav-link" href="#my-work">My Work</a>
+                        <p class="divider">|</p>
+                    </li>
+                    <li class="list-inline-item  pe-2">
+                        <a class="nav-link appear" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    <li class="list-inline-item">
+                        <p class="divider">|</p>
+                    </li>
+                    <li class="list-inline-item  pe-5">
+                        <a class="nav-link appear" href="#">Portfolio</a>
                     </li>
                 </ul>
-
             </div>
         </div>
         <div class="row bottom-row d-xs-block d-lg-none">
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
-                    aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <nav id="mobile-nav" class="navbar navbar-expand-lg w-100">
+                <button class="navbar-toggler navbar-light" type="button" data-toggle="collapse"
+                    data-target="#mobile-main-nav" aria-controls="mobile-main-nav" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse slide-in-right" id="main-nav">
+                <div class="collapse navbar-collapse slide-in-right" id="mobile-main-nav">
                     <ul class="navbar-nav mx-auto ul-container">
                         <li class="nav-item d-block">
-                            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="" id="home-link">
+                            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'home' %}" id="home-link">
                                 Home
                             </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="">
+                            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'about' %}">
                                 About
                             </a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="">
+                            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'contact' %}">
                                 Contact
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="">
+                                Portfolio
                             </a>
                         </li>
                     </ul>
@@ -98,23 +114,12 @@
     {% block content %}
 
     {% endblock %}
-    <footer>
-      
-    </footer>
+
     {% block postloadjs %}
     {% endblock %}
 
     <script>
-        $(function () {
-            var $win = $(window);
-            $win.scroll(function () {
-                if ($win.scrollTop() == 0)
-                    $('#navbar').fadeIn(1000);
-                else {
-                    $('#navbar').fadeOut(1000);
-                }
-            });
-        });
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
