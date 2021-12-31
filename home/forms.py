@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contact
+from .models import Contact, Image
 
 
 class ContactForm(forms.ModelForm):
@@ -26,3 +26,10 @@ class ContactForm(forms.ModelForm):
             placeholder = placeholders[field]
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].label = False
+
+
+class ImageForm(forms.ModelForm):
+
+    class Meta:
+        model = Image
+        fields = '__all__'

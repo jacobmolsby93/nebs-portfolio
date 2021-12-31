@@ -20,3 +20,10 @@ class Image(models.Model):
 
     def __str__(self):
         return self.name
+
+class Video(models.Model):
+    caption = models.CharField(max_length=254)
+    video = models.FileField()
+
+    def __str__(self):
+        return self.caption

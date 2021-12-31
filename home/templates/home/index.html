@@ -39,6 +39,22 @@
             <div class="row no-gutters gallery-row d-flex justify-content-center">
                 <div id="gallery">
                     {% if user.is_superuser %}
+                        {% for vid in videos %}
+                        <a href="{% url 'home' %}"><video width="100%" height="auto" autoplay muted loop>
+                            <source src="{{ vid.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                        </video></a>
+                        {% endfor %}
+                    
+                    {% else %}
+                    {% for vid in videos %}
+                    <video width="100%" height="auto" autoplay muted loop>
+                        <source src="{{ vid.video.url }}" type="video/mp4">
+                    Your browser does not support the video tag.
+                    </video>
+                    {% endfor %}
+                    {% endif %}
+                    {% if user.is_superuser %}
                         {% for img in images %}
                             <a href="{% url 'home' %}"><img src="{{ img.image.url }}" alt="{{ img.alt }}"></a>
                         {% endfor %}
