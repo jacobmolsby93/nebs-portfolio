@@ -94,7 +94,7 @@ def add_photo(request):
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
-            product = form.save()
+            image = form.save()
             messages.success(request, 'Successfully added Image!')
             return redirect(reverse('home'))
         else:
@@ -111,15 +111,47 @@ def add_photo(request):
 
 
 @login_required
-def delete_gallery_item(request, gallery_id):
+def delete_image(request, image_id):
     """
-    Delete a product in the store
+    Delete an Image
     """
     if not request.user.is_superuser:
         messages.error(request, 'Sorry, only store owners can do that.')
         return redirect(reverse('home'))
         
-    gallery_item = get_object_or_404(Image, pk=gallery_id)
-    gallery_item.delete()
-    messages.success(request, 'Product deleted!')
+    image = get_object_or_404(Image, pk=image_id)
+    image.delete()
+    messages.success(request, 'Image deleted!')
     return redirect(reverse('home'))
+
+
+@login_required
+def edit_image(request, image_id):
+    """
+    Edit a product in the store
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    image = get_object_or_404(Image, pk=image_id)
+
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES, instance=image)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated image!')
+            return redirect(reverse('home'))
+        else:
+            messages.error(request, 'Failed to update image. Please ensure the form is valid.')
+    else:
+        form = ImageForm(instance=image)
+        messages.info(request, f'Your are editing {image.name}')
+    
+    template = 'home/edit_gallery.html'
+    context = {
+        'form': form,
+        'image': image,
+    }
+
+    return render(request, template, context)

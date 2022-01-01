@@ -40,7 +40,7 @@
                 <div id="gallery">
                     {% if user.is_superuser %}
                         {% for vid in videos %}
-                        <a href="{% url 'home' %}"><video width="100%" height="auto" autoplay muted loop>
+                        <a href="#"><video width="100%" height="auto" autoplay muted loop>
                             <source src="{{ vid.video.url }}" type="video/mp4">
                         Your browser does not support the video tag.
                         </video></a>
@@ -56,7 +56,7 @@
                     {% endif %}
                     {% if user.is_superuser %}
                         {% for img in images %}
-                            <a href="{% url 'home' %}"><img src="{{ img.image.url }}" alt="{{ img.alt }}"></a>
+                            <a href="{% url 'edit_image' img.id %}"><img src="{{ img.image.url }}" alt="{{ img.alt }}"></a>
                         {% endfor %}
                     {% else %}
                         {% for img in images %}
@@ -97,3 +97,20 @@
 </div>
 
 {% endblock %}
+
+
+<script>
+$(function () {
+    var $win = $(window);
+    $win.scroll(function () {
+        if ($win.scrollTop() == 0)
+            $('.arrow-up').fadeOut(1000);
+        else {
+            $('.arrow-up').css('display', 'block');
+            $('.icon').click(function (e) {
+                window.scrollTo(0, 0)
+            })
+        }
+    });
+});
+</script>

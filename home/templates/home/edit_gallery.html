@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="landing-spacer"></div>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6">
+            <hr>
+            <h2 class="logo-font mb-4">Gallery Management</h2>
+            <h5 class="text-muted">Edit an Image</h5>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6 edit-col">
+            <form method="POST" action="{% url 'edit_image' image.id %}" class="form mb-2"
+                enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form %}
+                {% if field.name != 'image' %}
+                {{ field | as_crispy_field }}
+                {% else %}
+                {{ field }}
+                {% endif %}
+                {% endfor %}
+                <div class="row">
+                    <div class="col-6 d-flex justify-content-end order-last mt-2">
+                        <a class="btn btn-dark  btn-small" href="{% url 'home' %}">Cancel</a>
+                        <button class="btn btn-success" type="submit">Update Product</button>
+                    </div>
+                    <div class="col-6 d-flex justify-content-start mt-2">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#staticBackdrop">
+                            Delete
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Delete Confirmation</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h3>Are you sure you want to delete {{ image.name }}?</h3>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary pe-2 ps-2"
+                                            data-bs-dismiss="modal">No</button>
+                                        <a class="btn btn-success pe-2 ps-2" href="{% url 'delete_image' image.id %}">Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

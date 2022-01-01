@@ -75,6 +75,23 @@
     margin-top: 15px;
 }
 
+/* Edit Gallery */
+
+.edit-col {
+    border: 2px solid #817e7e;
+    padding: 20px;
+}
+
+
+/**/
+
+.btn-success {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 5px;
+}
+
+
 @media screen and (max-width: 800px) {
     #gallery {
         column-count: 2;

@@ -15,7 +15,7 @@ class Contact(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length=254)
-    alt = models.CharField(max_length=254, default=name)
+    alt = models.CharField(max_length=254, default='')
     image = models.ImageField()
 
     def __str__(self):
