@@ -37,7 +37,7 @@ body {
     justify-content: center;
     height: 1.5rem;
     width: 1.5rem;
-  }
+}
 
 /* Navbar */
 
@@ -63,13 +63,13 @@ body {
     height: 2px;
     background: #000;
     transition: width .4s ease-in;
-  }
-  
+}
+
 .list-inline-item a:hover::after {
     width: 100%;
-  }
+}
 
-  /* Toasts */
+/* Toasts */
 
 .message-container {
     position: fixed;
@@ -119,3 +119,28 @@ a:-webkit-any-link {
     font-size: 2rem !important;
 }
 
+/* Loading overlay */
+
+#loader {
+    border: 12px solid #272727;
+    border-radius: 50%;
+    border-top: 12px solid #444444;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+}
+  
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+  
+.center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}

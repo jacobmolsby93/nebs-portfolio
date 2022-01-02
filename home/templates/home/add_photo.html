@@ -12,8 +12,7 @@
     <div class="row d-flex justify-content-center">
         <div class="col-12 col-md-6">
             <hr>
-            <h2 class="logo-font mb-4">Gallery Management</h2>
-            <h5 class="text-muted">Add an Image</h5>
+            <h2 class="logo-font mb-4">Add Image</h2>
             <hr>
         </div>
     </div>
@@ -23,14 +22,20 @@
             <form method="POST" action="{% url 'add_photo' %}" class="form mb-2" enctype="multipart/form-data">
                 {% csrf_token %}
                 {% for field in form %}
-                    {% if field.name != 'image' %}
-                        {{ field | as_crispy_field }}
-                    {% else %}
-                        {{ field }}
-                    {% endif %}
+                {% if field.name != 'image' %}
+                {{ field | as_crispy_field }}
+                {% else %}
+                {{ field }}
+                {% endif %}
                 {% endfor %}
-                <div class="text-end">
-                    <button class="btn btn-success" type="submit">Add</button>
+                <div class="row mt-2">
+                    <div class="col-6">
+                        <button class="btn btn-warning"><a class="text-dark" href="{% url 'site_management' %}">Site
+                                Mangement</a></button>
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-success" type="submit">Add</button>
+                    </div>
                 </div>
             </form>
         </div>

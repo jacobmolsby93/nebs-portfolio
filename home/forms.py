@@ -1,5 +1,5 @@
 from django import forms
-from .models import Contact, Image
+from .models import Contact, Image, Video
 
 
 class ContactForm(forms.ModelForm):
@@ -32,4 +32,11 @@ class ImageForm(forms.ModelForm):
 
     class Meta:
         model = Image
+        fields = '__all__'
+
+
+class VideoForm(forms.ModelForm):
+
+    class Meta:
+        model = Video
         fields = '__all__'

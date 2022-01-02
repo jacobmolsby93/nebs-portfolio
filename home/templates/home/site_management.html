@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="landing-spacer"></div>
+<div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6">
+            <hr>
+            <h2 class="logo-font mb-4">Site Management</h2>
+            <hr>
+        </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-12 col-md-6 edit-col">
+            <div class="row">
+                <div class="col-6">
+                    <a class="btn btn-success" href="{% url 'add_photo' %}">Add An Image</a>
+                </div>
+                <div class="col-6 text-end">
+                    <a class="btn btn-primary" href="{% url 'add_video' %}">Add A Video</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import HttpResponse
 from .models import Image, Video
-from .forms import ImageForm
+from .forms import ImageForm, VideoForm
 
 
 # Create your views here.
@@ -21,8 +21,8 @@ def index(request):
     images = Image.objects.all()
     videos = Video.objects.all()
     items = list(chain(images, videos))
-    print(items)
-    paginator = Paginator(items, 11)
+
+    paginator = Paginator(items, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -119,6 +119,32 @@ def add_photo(request):
 
 
 @login_required
+def add_video(request):
+    """ Add a video to the gallery"""
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    if request.method == 'POST':
+        form = VideoForm(request.POST, request.FILES)
+        if form.is_valid():
+            video = form.save()
+            messages.success(request, 'Successfully added Video!')
+            return redirect(reverse('home'))
+        else:
+            messages.error(request, 'Failed to add Video. Please ensure the form is valid')
+    else:
+        form = VideoForm()
+    
+    template = 'home/add_video.html'
+    context = {
+        'form': form,
+    }
+
+    return render(request, template, context)
+
+
+@login_required
 def delete_image(request, image_id):
     """
     Delete an Image
@@ -130,6 +156,21 @@ def delete_image(request, image_id):
     image = get_object_or_404(Image, pk=image_id)
     image.delete()
     messages.success(request, 'Image deleted!')
+    return redirect(reverse('home'))
+
+
+@login_required
+def delete_video(request, video_id):
+    """
+    Delete a Video
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+        
+    video = get_object_or_404(Video, pk=video_id)
+    video.delete()
+    messages.success(request, 'Video deleted!')
     return redirect(reverse('home'))
 
 
@@ -156,10 +197,46 @@ def edit_image(request, image_id):
         form = ImageForm(instance=image)
         messages.info(request, f'Your are editing {image.name}')
     
-    template = 'home/edit_gallery.html'
+    template = 'home/edit_image.html'
     context = {
         'form': form,
         'image': image,
     }
 
     return render(request, template, context)
+
+
+@login_required
+def edit_video(request, video_id):
+    """
+    Edit a product in the store
+    """
+    if not request.user.is_superuser:
+        messages.error(request, 'Sorry, only store owners can do that.')
+        return redirect(reverse('home'))
+
+    video = get_object_or_404(Video, pk=video_id)
+
+    if request.method == 'POST':
+        form = VideoForm(request.POST, request.FILES, instance=video)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Successfully updated video!')
+            return redirect(reverse('home'))
+        else:
+            messages.error(request, 'Failed to update video. Please ensure the form is valid.')
+    else:
+        form = VideoForm(instance=video)
+        messages.info(request, f'Your are editing {video.caption}')
+    
+    template = 'home/edit_video.html'
+    context = {
+        'form': form,
+        'video': video,
+    }
+
+    return render(request, template, context)
+
+
+def site_management(request):
+    return render(request, 'home/site_management.html')

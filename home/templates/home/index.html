@@ -12,15 +12,15 @@
     <!-- Landing Page -->
     <section id="landing-page-section">
         <div id="landing-image"></div>
-        <div class="landing-spacer"></div>
+        <div class="landing-spacer-1"></div>
         <div class="row offset-md-1 d-flex align-items-center landing-row">
-            <div class="col-12 col-md-8">
-                <h1 class="main-title text-large">LOREM IPSUM DESIGN</h1>
+            <div class="col-12 col-md-5">
+                <h1 class="main-title text-large">NEBS DESIGN</h1>
                 <p class="info-text bread-text">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
                     industry's standard dummy text ever since the 1500s.
                 </p>
-                <a class="about-link" href="{% url 'about' %}">Learn more about me</a>
+                <a id="about-link" class="about-link" href="{% url 'about' %}">Learn more about me</a>
             </div>
         </div>
     </section>
@@ -30,44 +30,64 @@
 
     <!-- Gallery -->
     <section id="gallery-section" class="mb-5">
-        <div class="row mb-3 mt-3 d-flex justify-content-center">
-            <div class="col-12 text-center">
-                <h4>Gallery</h4>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center mt-md-5">
+                <h3>Gallery</h3>
+
             </div>
+            <div class="col-12 d-flex justify-content-center">
+                <p class="text-small text-center mb-0">"A collection of my work"</p>
+            </div>
+
         </div>
         <div class="container-fluid">
             <div class="row no-gutters gallery-row d-flex justify-content-center">
                 <div id="gallery">
                     {% for item in items %}
-                        {% if item.image %}
-                        <img src="{{ item.image.url }}" alt="{{ img.alt }}">
-                        {% else %}
-                        <video width="100%" height="auto" autoplay muted loop>
+                    {% if item.image %}
+                    {% if user.is_superuser %}
+                    <a href="{% url 'edit_image' item.id %}"><img src="{{ item.image.url }}" alt="{{ item.alt }}"></a>
+                    {% else %}
+                    <img src="{{ item.image.url }}" alt="{{ item.alt }}">
+                    {% endif %}
+                    {% else %}
+                    {% if user.is_superuser %}
+                    <a href="{% url 'edit_video' item.id %}"><video width="100%" height="auto" autoplay muted loop>
                             <source src="{{ item.video.url }}" type="video/mp4">
                             Your browser does not support the video tag.
-                        </video>
-                        {% endif %}
+                        </video></a>
+                    {% else %}
+                    <video width="100%" height="auto" autoplay muted loop>
+                        <source src="{{ item.video.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    {% endif %}
+                    {% endif %}
                     {% endfor %}
                 </div>
-            </div>
-            <div class="about-spacer"></div>
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <span class="step-links">
-                        {% if items.has_previous %}
-                        <a href="?page=1">&laquo; first</a>
-                        <a href="?page={{ items.previous_page_number }}">previous</a>
-                        {% endif %}
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center mt-md-5">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                {% if items.has_previous %}
+                                <li class="page-item"><a class="page-link"
+                                        href="?page={{ items.previous_page_number }}">Previous</a></li>
+                                {% endif %}
 
-                        <span class="current">
-                            Page {{ items.number }} of {{ items.paginator.num_pages }}
-                        </span>
+                                {% if items.paginator.num_pages == 1 %}
 
-                        {% if items.has_next %}
-                        <a href="?page={{ items.next_page_number }}">next</a>
-                        <a href="?page={{ items.paginator.num_pages }}">last &raquo;</a>
-                        {% endif %}
-                    </span>
+                                {% else %}
+                                <li class="page-item active" aria-current="page">
+                                    <p class="page-link">{{ items.number}} of {{ items.paginator.num_pages }}</p>
+                                </li>
+                                {% endif %}
+                                {% if items.has_next %}
+                                <li class="page-item"><a class="page-link"
+                                        href="?page={{ items.next_page_number }}">Next</a></li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,10 +105,12 @@
                 <nav>
                     <ul class="list-unstyled list-inline">
                         <li class="list-inline-item">
-                            <a class="icon" href="#" target="_blank"><i class="fab fa-facebook footer-icon"></i></a>
+                            <a class="icon footer-icon" href="#" target="_blank"><i
+                                    class="fab fa-facebook footer-icon"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a class="icon" href="#" target="_blank"><i class="fab fa-instagram footer-icon"></i></a>
+                            <a class="icon footer-icon" href="#" target="_blank"><i
+                                    class="fab fa-instagram footer-icon"></i></a>
                         </li>
                     </ul>
                 </nav>
@@ -105,6 +127,9 @@
         <i class="fas fa-arrow-alt-circle-up"></i>
     </span>
 </div>
+<!-- <div class="overlay">
+    <div id="loader" class="center"></div>
+</div> -->
 {% endblock %}
 
 
@@ -122,6 +147,10 @@
                 })
             }
         });
+    });
+
+    jQuery(window).load(function () {
+        alert('page is loaded');
     });
 </script>
 {% endblock %}
