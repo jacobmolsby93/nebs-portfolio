@@ -38,79 +38,90 @@
         <div class="container-fluid">
             <div class="row no-gutters gallery-row d-flex justify-content-center">
                 <div id="gallery">
-                    {% if user.is_superuser %}
-                        {% for vid in videos %}
-                        <a href="#"><video width="100%" height="auto" autoplay muted loop>
-                            <source src="{{ vid.video.url }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                        </video></a>
-                        {% endfor %}
-                    
-                    {% else %}
-                    {% for vid in videos %}
-                    <video width="100%" height="auto" autoplay muted loop>
-                        <source src="{{ vid.video.url }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                    </video>
+                    {% for item in items %}
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ img.alt }}">
+                        {% else %}
+                        <video width="100%" height="auto" autoplay muted loop>
+                            <source src="{{ item.video.url }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        {% endif %}
                     {% endfor %}
-                    {% endif %}
-                    {% if user.is_superuser %}
-                        {% for img in images %}
-                            <a href="{% url 'edit_image' img.id %}"><img src="{{ img.image.url }}" alt="{{ img.alt }}"></a>
-                        {% endfor %}
-                    {% else %}
-                        {% for img in images %}
-                            <img src="{{ img.image.url }}" alt="{{ img.alt }}">
-                        {% endfor %}
-                    {% endif %}
+                </div>
+            </div>
+            <div class="about-spacer"></div>
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <span class="step-links">
+                        {% if items.has_previous %}
+                        <a href="?page=1">&laquo; first</a>
+                        <a href="?page={{ items.previous_page_number }}">previous</a>
+                        {% endif %}
+
+                        <span class="current">
+                            Page {{ items.number }} of {{ items.paginator.num_pages }}
+                        </span>
+
+                        {% if items.has_next %}
+                        <a href="?page={{ items.next_page_number }}">next</a>
+                        <a href="?page={{ items.paginator.num_pages }}">last &raquo;</a>
+                        {% endif %}
+                    </span>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- /Gallery -->
+</div>
+</section>
+<!-- /Gallery -->
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container container-fluid">
-            <div class="row d-flex justify-content-center">
-                <div class="col-12 text-center">
-                    <h6 class="text-muted"><i class="far fa-copyright"></i> Created by Jacob Molsby Designed By Nebs
-                    </h6>
-                    <nav>
-                        <ul class="list-unstyled list-inline">
-                            <li class="list-inline-item">
-                                <a class="icon" href="#" target="_blank"><i class="fab fa-facebook footer-icon"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="icon" href="#" target="_blank"><i
-                                        class="fab fa-instagram footer-icon"></i></a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
+<!-- Footer -->
+<footer>
+    <div class="footer-container container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 text-center">
+                <h6 class="text-muted"><i class="far fa-copyright"></i> Created by Jacob Molsby Designed By Nebs
+                </h6>
+                <nav>
+                    <ul class="list-unstyled list-inline">
+                        <li class="list-inline-item">
+                            <a class="icon" href="#" target="_blank"><i class="fab fa-facebook footer-icon"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a class="icon" href="#" target="_blank"><i class="fab fa-instagram footer-icon"></i></a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+
         </div>
-    </footer>
-    <!-- /Footer -->
+    </div>
+</footer>
+<!-- /Footer -->
 
 </div>
-
+<div class="arrow-up">
+    <span class="icon">
+        <i class="fas fa-arrow-alt-circle-up"></i>
+    </span>
+</div>
 {% endblock %}
 
 
+{% block postloadjs %}
 <script>
-$(function () {
-    var $win = $(window);
-    $win.scroll(function () {
-        if ($win.scrollTop() == 0)
-            $('.arrow-up').fadeOut(1000);
-        else {
-            $('.arrow-up').css('display', 'block');
-            $('.icon').click(function (e) {
-                window.scrollTo(0, 0)
-            })
-        }
+    $(function () {
+        var $win = $(window);
+        $win.scroll(function () {
+            if ($win.scrollTop() == 0)
+                $('.arrow-up').fadeOut(1000);
+            else {
+                $('.arrow-up').css('display', 'block');
+                $('.icon').click(function (e) {
+                    window.scrollTo(0, 0)
+                })
+            }
+        });
     });
-});
 </script>
+{% endblock %}

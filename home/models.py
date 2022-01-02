@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+from itertools import chain
 
 # Create your models here.
 
@@ -27,3 +28,4 @@ class Video(models.Model):
 
     def __str__(self):
         return self.caption
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from .forms import ContactForm
+from itertools import chain
 from django.core.paginator import Paginator
 from django.core.mail import send_mail, BadHeaderError
 from django.conf import settings
@@ -9,6 +10,7 @@ from django.http import HttpResponse
 from .models import Image, Video
 from .forms import ImageForm
 
+
 # Create your views here.
 
 
@@ -16,13 +18,19 @@ def index(request):
     """
     A view to render the home page
     """
-    videos = Video.objects.all()
     images = Image.objects.all()
+    videos = Video.objects.all()
+    items = list(chain(images, videos))
+    print(items)
+    paginator = Paginator(items, 11)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     template = 'home/index.html'
     context = {
         'videos': videos,
         'images': images,
+        'items': page_obj
     }
     return render(request, template, context)
 

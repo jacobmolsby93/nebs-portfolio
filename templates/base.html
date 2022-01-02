@@ -44,13 +44,17 @@
     <header id="navbar" class="container-fluid fixed-top">
         <div id="main-nav" class="row pt-lg-2 d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-left">
-                <a href="{% url 'home' %}" class="nav-link main-logo-link pb-3">
-                    <h2 class="logo-font text-black my-0">NEBS DESIGN</h2>
-                </a>
+                    <a href="{% url 'home' %}" class="nav-link main-logo-link pb-3">
+                        <h2 class="logo-font text-black my-0">NEBS DESIGN</h2>
+                    </a>
             </div>
-
             <div class="col-12 col-lg-6 pt-2 me-2 py-lg-0 ms-auto d-flex justify-content-end">
                 <ul class="list-unstyled list-inline pt-2 ">
+                    {% if user.is_authenticated %}
+                    <li class="list-inline-item pe-2">
+                        <a class="nav-link appear" href="{% url 'account_logout' %}">Logout</a>
+                    </li>
+                    {% endif %}
                     <li class="list-inline-item pe-2">
                         <a class="nav-link appear" href="{% url 'home' %}">Home</a>
                     </li>

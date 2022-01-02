@@ -18,6 +18,17 @@ body {
     border-radius: 0 !important;
 }
 
+.arrow-up {
+    position: fixed;
+    right: 5px;
+    bottom: 0;
+    display: none;
+}
+
+.fa-arrow-alt-circle-up {
+    font-size: 2rem;
+}
+
 
 /* Bulma */
 .icon {
