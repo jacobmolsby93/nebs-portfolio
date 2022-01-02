@@ -7,6 +7,13 @@
 
 /* Landing Page */
 
+.landing-collumn {
+    background-color: rgba(240, 240, 240, 0.5);
+    border-radius: 10px;
+    padding: 10px;
+    max-width: 450px;
+}
+
 .landing-row {
     padding-left: 10px;
     padding-right: 10px;
