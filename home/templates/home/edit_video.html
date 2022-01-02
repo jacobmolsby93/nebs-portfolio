@@ -11,7 +11,7 @@
 <div class="landing-spacer"></div>
 <div class="container">
     <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-6">
+        <div class="col-11 col-md-6">
             <hr>
             <h2 class="logo-font mb-4">Update Video</h2>
             <hr>
@@ -19,7 +19,7 @@
     </div>
 
     <div class="row d-flex justify-content-center">
-        <div class="col-12 col-md-6 edit-col">
+        <div class="col-11 col-md-6 edit-col">
             <form method="POST" action="{% url 'edit_video' video.id %}" class="form mb-2"
                 enctype="multipart/form-data">
                 {% csrf_token %}
