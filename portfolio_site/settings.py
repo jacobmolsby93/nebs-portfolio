@@ -45,10 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
     'home',
 
     # Others
@@ -56,12 +52,7 @@ INSTALLED_APPS = [
     
 ]
 
-SITE_ID = 1
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
 
 
 MIDDLEWARE = [
@@ -122,7 +113,7 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+            'NAME': BASE_DIR / 'db.sqlite3',
         }
     }
 
