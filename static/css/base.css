@@ -41,6 +41,11 @@ body {
 
 /* Navbar */
 
+.nav-logo {
+    width: 10%;
+    height: auto;
+}
+
 #main-nav {
     background-color: #F3F3F3;
 }
