@@ -27,14 +27,14 @@ DEBUG = 'DEVELOPMENT' in os.environ
 ALLOWED_HOSTS = [
     'localhost',
     'nebulaoktorino.herokuapp.com',
-    'www.nebulaoctorino.site',
-    'nebulaoctorino.site'
+    'www.nebulaoktorino.site',
+    'nebulaoktorino.site'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-aqua-tern-ff12jbfz.ws-us25.gitpod.io',
     'https://nebulaoktorino.herokuapp.com',
-    'http://http://www.nebulaoctorino.site'
+    'http://http://www.nebulaoktorino.site'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
