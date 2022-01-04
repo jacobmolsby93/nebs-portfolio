@@ -34,7 +34,7 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-aqua-tern-ff12jbfz.ws-us25.gitpod.io',
     'https://nebulaoktorino.herokuapp.com',
-    'https://http://www.nebulaoctorino.site'
+    'http://http://www.nebulaoctorino.site'
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -193,7 +193,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 if 'DEVELOPMENT' in os.environ:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'creatorstudioinc@info.com'
+    DEFAULT_FROM_EMAIL = 'nebsdesign@gmail.com'
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
