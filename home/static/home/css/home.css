@@ -469,14 +469,21 @@ div.col-12.lets-chat-mobile-container>div>div:nth-child(3)>div>div>a>h5 {
 @media screen and (min-width: 450px) {
     #about-img {
         min-width: 400px;
-        max-height: auto;
     }
 }
+
+ @media screen and (max-width: 400px) {
+     #about-img {
+         max-height: 300px;
+         max-width: 280px;
+     }
+ }
 
 @media screen and (max-width: 992px) {
     #about-img {
         width: 100%;
         max-width: 500px;
+        
     }
 }
 
