@@ -24,9 +24,18 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEVELOPMENT' in os.environ
 
-ALLOWED_HOSTS = ['nebulaoktorino.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = [
+    'localhost',
+    'nebulaoktorino.herokuapp.com',
+    'www.nebulaoctorino.site',
+    'nebulaoctorino.site'
+]
 
-CSRF_TRUSTED_ORIGINS = ['https://8000-aqua-tern-ff12jbfz.ws-us25.gitpod.io', 'https://nebulaoktorino.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = [
+    'https://8000-aqua-tern-ff12jbfz.ws-us25.gitpod.io',
+    'https://nebulaoktorino.herokuapp.com',
+    'https://http://www.nebulaoctorino.site'
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
