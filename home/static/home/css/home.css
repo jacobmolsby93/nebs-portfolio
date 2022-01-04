@@ -428,6 +428,7 @@ textarea {
     border: 2px solid #817e7e;
     margin-top: 50px;
     padding: 20px;
+    max-width: 392px;
 }
 
 .lets-chat-mobile-container {
@@ -462,6 +463,12 @@ div.col-12.lets-chat-mobile-container>div>div:nth-child(3)>div>div>a>h5 {
 @media screen and (max-width: 400px) {
     .edit-col {
         padding: 5px;
+    }
+}
+
+@media screen and (min-width: 450px) {
+    #about-img {
+        min-width: 400px;
     }
 }
 
