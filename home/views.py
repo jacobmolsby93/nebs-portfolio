@@ -18,8 +18,8 @@ def index(request):
     """
     A view to render the home page
     """
-    images = Image.objects.all()
-    videos = Video.objects.all()
+    images = Image.objects.all().order_by("-created_on")
+    videos = Video.objects.all().order_by("-created_on")
     items = list(chain(images, videos))
 
     paginator = Paginator(items, 12)
