@@ -70,7 +70,7 @@ def contact(request):
                 send_mail(
                     subject,
                     message,
-                    from_email = form_email,
+                    from_email = settings.DEFAULT_FROM_EMAIL,
                     recipient_list = [settings.EMAIL_HOST_USER],
                     fail_silently=False,
                 )
