@@ -70,7 +70,7 @@ def contact(request):
                     subject,
                     message,
                     form_email,
-                    [settings.DEFAULT_FROM_EMAIL],
+                    [settings.EMAIL_HOST_USER],
                 )
                 # messages.success(request, 'Sucesfully sent email')
             except BadHeaderError:
