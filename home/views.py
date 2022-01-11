@@ -71,7 +71,7 @@ def contact(request):
                     subject,
                     f'Name: {name}\nMessage: {message}',
                     request.POST.get('email'),
-                    [settings.DEFAULT_FROM_EMAIL],
+                    [request.POST.get('email')],
                 )
                 # messages.success(request, 'Sucesfully sent email')
             except BadHeaderError:
