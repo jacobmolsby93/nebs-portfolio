@@ -64,7 +64,7 @@ def contact(request):
                 'message': form.cleaned_data['message'],
             }
 
-            message = f'Email from {form_name} from the email of {form_email} \n {form["message"]}'
+            message = f'Email from {form_name} from the email of {form_email}\n{form["message"]}'
             form = ContactForm()
             try:
                 send_mail(
