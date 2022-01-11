@@ -63,14 +63,16 @@ def contact(request):
                 'email': form.cleaned_data['email'],
                 'message': form.cleaned_data['message'],
             }
-            message = form['message']
+
+            message = f'Email from {form_name} from the email of {form_email} \n {form["message"]}'
             form = ContactForm()
             try:
                 send_mail(
                     subject,
                     message,
-                    form_email,
-                    [settings.EMAIL_HOST_USER],
+                    from_email = form_email,
+                    recipient_list = [settings.EMAIL_HOST_USER],
+                    fail_silently=False,
                 )
                 # messages.success(request, 'Sucesfully sent email')
             except BadHeaderError:
