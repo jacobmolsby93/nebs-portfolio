@@ -466,6 +466,12 @@ div.col-12.lets-chat-mobile-container>div>div:nth-child(3)>div>div>a>h5 {
 
 /* Media queries responsive */
 
+@media screen and (max-width: 1400px) {
+    #about-img {
+        max-height: 550px;
+    }
+}
+
 @media screen and (max-width: 400px) {
     .edit-col {
         padding: 5px;
